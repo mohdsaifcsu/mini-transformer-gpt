@@ -19,7 +19,7 @@ class TextDataset(Dataset):
         print(f"Total tokens: {len(self.data)}")
 
     def __len__(self):
-        # Number of valid training windows
+        # Number of valid training windows.
         return len(self.data) - self.block_size
 
     def __getitem__(self, idx):

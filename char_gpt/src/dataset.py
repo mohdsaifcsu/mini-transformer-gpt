@@ -1,6 +1,6 @@
 # dataset.py
 # Creates training sequences for next token prediction
-# -----------------------------------------------------
+# ------------------------------------------------------
 
 import torch
 from torch.utils.data import Dataset

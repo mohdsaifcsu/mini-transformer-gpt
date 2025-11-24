@@ -16,9 +16,9 @@ class TextDataset(Dataset):
         self.tokenizer = tokenizer
         self.block_size = block_size
 
-        # ------------------------------------------------------------
+        # -----------------------------------------------------------
         # Encode full dataset once (BPE tokenization)
-        # ------------------------------------------------------------
+        # -----------------------------------------------------------
         print("Encoding full dataset with GPT-2 BPE tokenizer")
         self.data = tokenizer.encode(text)
 
