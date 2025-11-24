@@ -1,11 +1,16 @@
 # MINI-TRANFORMER-GPT
 ## A minimal, educational purpose GPT-style Transformer built from scratch in Python and PyTorch
+Mini-transformer-gpt is a complete educational implementation of a GPT-style
+Transformer model built from scratch using Python and PyTorch. It includes a 
+custom GPT-2 BPE tokenizer, dataset pipeline, a mini GPT-2 architecture, training 
+scripts, checkpointing, and text generation.
 This project implements a lightweight GPT-style language model from scratch, including:
 
 - Character level Transformer
-- GPT-2 BPE tokenizer
+- GPT-2 BPE(Byte-Pair Encoding) tokenizer
 - A mini GPT-2–style architecture
 - Training loop
+- Attention + feed-forward transformer blocks 
 - Text generation with multinomial sampling
 - Google Colab compatible training
 - Local + Colab interoperability for checkpoints (.pth)
@@ -115,6 +120,8 @@ This trains for several epochs depending on your dataset size.
 ---
 
 ## Train in Google Colab (Highly Recommended for fast training)
+[Run on Google Colab] (https://colab.research.google.com/)
+
 
 1. Upload your project zip
 2. Unzip inside Colab
@@ -179,6 +186,7 @@ GitHub: https://github.com/mohdsaifcsu
 This project is for **academic and educational use** only.
 
 ---
+
 
 
 
