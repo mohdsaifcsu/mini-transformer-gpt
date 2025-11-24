@@ -8,7 +8,7 @@ This project implements a lightweight GPT-style language model from scratch, inc
 
 - Character level Transformer
 - GPT-2 BPE(Byte-Pair Encoding) tokenizer
-- A mini GPT-2–style architecture
+- A mini GPT-2 -style architecture
 - Training loop
 - Attention + feed-forward transformer blocks 
 - Text generation with multinomial sampling
@@ -186,6 +186,7 @@ GitHub: https://github.com/mohdsaifcsu
 This project is for **academic and educational use** only.
 
 ---
+
 
 
 
