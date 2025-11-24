@@ -1,6 +1,6 @@
 # transformer_blocks.py
 # ---------------------------------------------
-# Step 13A: Simple Self-Attention Head (single head)
+# 1) Simple Self-Attention Head (single head)
 # ---------------------------------------------
 
 import torch
@@ -16,7 +16,7 @@ class SelfAttentionHead(nn.Module):
         self.key   = nn.Linear(embed_dim, head_dim, bias=False)
         self.value = nn.Linear(embed_dim, head_dim, bias=False)
 
-        # Causal mask (so GPT can't look ahead)
+        # Causal mask (so GPT cannot look ahead)
         self.register_buffer("mask", torch.tril(torch.ones(block_size, block_size)))
 
         self.dropout = nn.Dropout(0.1)
@@ -49,7 +49,7 @@ class SelfAttentionHead(nn.Module):
 
 
 # -----------------------------------------------------
-# Step 13B: Multi-Head Self Attention
+# 2) Multi-Head Self Attention
 # -----------------------------------------------------
 
 class MultiHeadAttention(nn.Module):
@@ -78,7 +78,7 @@ class MultiHeadAttention(nn.Module):
 
 
 # -----------------------------------------------------
-# Step 13C: Feedforward Network (FFN)
+# 3) Feedforward Network (FFN)
 # -----------------------------------------------------
 
 class FeedForward(nn.Module):
@@ -102,7 +102,7 @@ class FeedForward(nn.Module):
 
 
 # -----------------------------------------------------
-# Step 13D: Full Transformer Block
+# 4) Full Transformer Block
 # -----------------------------------------------------
 
 class TransformerBlock(nn.Module):
@@ -117,10 +117,10 @@ class TransformerBlock(nn.Module):
         self.ffn  = FeedForward(embed_dim)
 
     def forward(self, x):
-        # 1) Attention with residual
+        # a) Attention with residual
         x = x + self.attn(self.ln1(x))
 
-        # 2) Feedforward with residual
+        # b) Feedforward with residual
         x = x + self.ffn(self.ln2(x))
 
         return x

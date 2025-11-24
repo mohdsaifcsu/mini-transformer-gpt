@@ -5,17 +5,13 @@ import torch.optim as optim
 import os
 import re
 
-# -------------------------
-# Updated imports
-# -------------------------
+
 from gpt2_bpe_tiny.src.bpe_tokenizer import GPT2BPETokenizer
 from gpt2_bpe_tiny.src.dataset import TextDataset
 from gpt2_bpe_tiny.src.gpt2_model import GPT2Tiny
 
 
-# ================================================================
-# Load latest checkpoint from gpt2_bpe_tiny/checkpoints
-# ================================================================
+
 def load_latest_checkpoint():
 
     ckpt_dir = "gpt2_bpe_tiny/checkpoints"
@@ -52,7 +48,7 @@ def main():
     # ------------------------------------------------------------
     # 2. Load dataset
     # ------------------------------------------------------------
-    print("Loading dataset...")
+    print("Loading dataset.....")
     text = open("gpt2_bpe_tiny/data/tiny_shakespeare.txt", "r", encoding="utf-8").read()
 
     block_size = 64
@@ -83,7 +79,7 @@ def main():
     # 5. Training loop
     # ------------------------------------------------------------
     epochs = 2
-    print("Training started...")
+    print("Training started.....")
 
     for epoch in range(epochs):
         running_loss = 0.0

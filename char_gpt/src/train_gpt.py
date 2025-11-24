@@ -42,7 +42,7 @@ def main():
     print(f"Using device: {device}")
 
     # -------------------------
-    # 2) Load text & tokenizer
+    # 2) Load text and tokenizer
     # -------------------------
     data_path = "char_gpt/data/tiny_corpus.txt"
     text = open(data_path, "r").read()

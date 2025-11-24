@@ -1,5 +1,5 @@
 # dataset.py
-# Creates training sequences for next-token prediction
+# Creates training sequences for next token prediction
 # -----------------------------------------------------
 
 import torch

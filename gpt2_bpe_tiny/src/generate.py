@@ -19,7 +19,7 @@ def generate(
 
     device = next(model.parameters()).device
 
-    # Encode prompt → initial token IDs
+    # Encode prompt -> initial token IDs
     ids = tokenizer.encode(prompt)
     ids = torch.tensor(ids, dtype=torch.long, device=device).unsqueeze(0)
 
@@ -32,7 +32,7 @@ def generate(
 
         # Model forward pass
         logits = model(idx_cond)  # shape: (1, T, vocab_size)
-        logits = logits[:, -1, :] / max(temperature, 1e-8)  # last-step logits
+        logits = logits[:, -1, :] / max(temperature, 1e-8)  # last step logits
 
         # -----------------------------
         # Top-k filtering
@@ -43,7 +43,7 @@ def generate(
             logits[logits < values[:, [-1]]] = -1e10
 
         # -----------------------------
-        # Softmax → probabilities
+        # Softmax -> probabilities
         # -----------------------------
         probs = F.softmax(logits, dim=-1)
 
@@ -69,10 +69,10 @@ def generate(
         ids = torch.cat([ids, next_id], dim=1)
 
         # -----------------------------
-        # Stop when end-of-text encountered (GPT-2 uses 50256)
+        # Stop when end-of-text encountered
         # -----------------------------
         if next_id.item() == tokenizer.encoder.get("<|endoftext|>", -1):
             break
 
-    # Decode tokens → string
+    # Decode tokens -> string
     return tokenizer.decode(ids[0].tolist())

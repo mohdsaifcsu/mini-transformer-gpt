@@ -7,7 +7,7 @@ from typing import List, Tuple
 
 class GPT2BPETokenizer:
     """
-    Same tokenizer as GPT-2 Tiny — BPE is architecture-independent.
+    Same tokenizer as GPT-2 Tiny - BPE is architecture-independent.
     Only folder paths differ.
     """
 

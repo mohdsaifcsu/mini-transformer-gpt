@@ -2,9 +2,7 @@
 
 import torch
 
-# -----------------------------
-# Updated imports for new folder
-# -----------------------------
+
 from gpt2_bpe_tiny.src.bpe_tokenizer import GPT2BPETokenizer
 from gpt2_bpe_tiny.src.gpt2_model import GPT2Tiny
 from gpt2_bpe_tiny.src.train_gpt2 import load_latest_checkpoint
@@ -46,7 +44,7 @@ def main():
     # -----------------------------
     prompt = input("\nEnter prompt: ").strip()
 
-    print("\nGenerating text...\n")
+    print("\nGenerating text.....\n")
 
     # -----------------------------
     # Generate text

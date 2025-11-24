@@ -1,5 +1,5 @@
 # tokenizer.py
-# Simple Character-Level Tokenizer for Tiny GPT
+# Simple Character Level Tokenizer for Tiny GPT
 # --------------------------------------------------
 # This tokenizer converts:
 #    text -> list of token IDs

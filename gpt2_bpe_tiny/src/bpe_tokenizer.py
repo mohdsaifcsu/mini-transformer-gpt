@@ -41,7 +41,7 @@ class GPT2BPETokenizer:
         self.bpe_ranks = {pair: i for i, pair in enumerate(merges)}
 
         # ------------------------------------------------------------
-        # GPT-2 regex (WORKING VERSION)
+        # GPT-2 regex
         # ------------------------------------------------------------
         # using unicode categories via `regex` (not Python re)
         self.pat = re.compile(
@@ -78,7 +78,7 @@ class GPT2BPETokenizer:
             min_pair = None
             min_rank = float("inf")
 
-            # find smallest-rank merge pair
+            # find smallest rank merge pair
             for pair in pairs:
                 if pair in self.bpe_ranks and self.bpe_ranks[pair] < min_rank:
                     min_rank = self.bpe_ranks[pair]

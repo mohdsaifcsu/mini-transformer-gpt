@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 
 # ============================================================
-# 1. Multi-Head Attention (GPT-2 style)
+# 1. Multi-Head Attention
 # ============================================================
 class MultiHeadAttention(nn.Module):
     def __init__(self, embed_dim, num_heads):
@@ -111,7 +111,7 @@ class GPT2Tiny(nn.Module):
 
     def forward(self, idx, targets=None):
         B, T = idx.shape
-        assert T <= self.block_size, "Sequence length exceeds block_size!"
+        assert T <= self.block_size, "Sequence length exceeds block_size"
 
         tok = self.token_emb(idx)
 

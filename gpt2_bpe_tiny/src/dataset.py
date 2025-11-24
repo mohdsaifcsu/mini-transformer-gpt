@@ -13,7 +13,7 @@ class TextDataset(Dataset):
         self.block_size = block_size
 
         # Encode entire corpus once
-        print("Encoding full dataset with GPT-2 BPE tokenizer...")
+        print("Encoding full dataset with GPT-2 BPE tokenizer")
         self.data = tokenizer.encode(text)
 
         print(f"Total tokens: {len(self.data)}")

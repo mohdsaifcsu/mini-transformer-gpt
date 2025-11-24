@@ -7,7 +7,7 @@ from torch.utils.data import Dataset
 class TextDataset(Dataset):
     """
     GPT-2 BPE dataset for autoregressive training.
-    Converts full text → token IDs → sliding windows.
+    Converts full text -> token IDs -> sliding windows.
     """
 
     def __init__(self, text, tokenizer, block_size=128):
@@ -19,7 +19,7 @@ class TextDataset(Dataset):
         # ------------------------------------------------------------
         # Encode full dataset once (BPE tokenization)
         # ------------------------------------------------------------
-        print("Encoding full dataset with GPT-2 BPE tokenizer...")
+        print("Encoding full dataset with GPT-2 BPE tokenizer")
         self.data = tokenizer.encode(text)
 
         print(f"Total tokens in dataset: {len(self.data)}")
