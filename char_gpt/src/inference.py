@@ -4,37 +4,37 @@
 # ----------------------------------------
 
 import torch
-from src.tokenizer import CharTokenizer
-from src.gpt_model import GPTModel
+from char_gpt.src.tokenizer import CharTokenizer
+from char_gpt.src.gpt_model import GPTModel
 
 
 def generate(model, tokenizer, start_text, max_len=100, temperature=1.0, top_k=None, top_p=None):
+    """Generate text autoregressively."""
     model.eval()
 
+    # Convert prompt to token IDs
     idx = torch.tensor([tokenizer.encode(start_text)], dtype=torch.long)
 
     for _ in range(max_len):
 
-        # Ensure we do not exceed block_size
+        # Keep only the last block_size tokens
         if idx.size(1) > model.block_size:
             idx_cond = idx[:, -model.block_size:]
         else:
             idx_cond = idx
 
         # Forward pass
-        logits = model(idx_cond)
-
-        # Get last-step logits
-        logits = logits[:, -1, :]  
+        logits = model(idx_cond)          # (B, T, vocab)
+        logits = logits[:, -1, :]         # last step
         logits = logits / temperature
 
-        # ----- TOP-K sampling -----
+        # ----- TOP-K filtering -----
         if top_k is not None:
             values, _ = torch.topk(logits, top_k)
-            min_value = values[:, -1].unsqueeze(-1)
-            logits = torch.where(logits < min_value, torch.full_like(logits, float('-inf')), logits)
+            min_vals = values[:, -1].unsqueeze(-1)
+            logits = torch.where(logits < min_vals, torch.full_like(logits, float('-inf')), logits)
 
-        # ----- TOP-P (nucleus) sampling -----
+        # ----- TOP-P filtering -----
         if top_p is not None:
             sorted_logits, sorted_idx = torch.sort(logits, descending=True)
             probs = torch.softmax(sorted_logits, dim=-1)
@@ -54,15 +54,16 @@ def generate(model, tokenizer, start_text, max_len=100, temperature=1.0, top_k=N
         # Sample token
         next_token = torch.multinomial(probs, num_samples=1)
 
-        # Append it
+        # Append
         idx = torch.cat([idx, next_token], dim=1)
 
     return tokenizer.decode(idx[0].tolist())
 
 
 def main():
-    # Load the text to rebuild tokenizer
-    text = open("data/tiny_corpus.txt").read()
+
+    # Load data used to build tokenizer
+    text = open("char_gpt/data/tiny_corpus.txt", "r").read()
     tokenizer = CharTokenizer(text)
 
     vocab_size = tokenizer.vocab_size
@@ -71,12 +72,23 @@ def main():
     num_heads = 4
     num_layers = 2
 
-    # Load model
-    model = GPTModel(vocab_size, embed_dim, block_size, num_heads, num_layers)
-    model.load_state_dict(torch.load("gpt_tiny.pth"))
-    print("Model loaded!")
+    # Build model
+    model = GPTModel(
+        vocab_size=vocab_size,
+        embed_dim=embed_dim,
+        block_size=block_size,
+        num_heads=num_heads,
+        num_layers=num_layers,
+    )
 
-    # Generate text
+    # -----------------------------
+    # Correct checkpoint path
+    # -----------------------------
+    ckpt_path = "char_gpt/checkpoints/gpt_tiny.pth"
+    model.load_state_dict(torch.load(ckpt_path, map_location="cpu"))
+    print(f"Model loaded from {ckpt_path}")
+
+    # Generate output
     output = generate(
         model,
         tokenizer,

@@ -5,7 +5,7 @@
 
 import torch
 import torch.nn as nn
-from src.transformer_blocks import TransformerBlock
+from char_gpt.src.transformer_blocks import TransformerBlock
 
 
 class GPTModel(nn.Module):
