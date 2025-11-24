@@ -163,12 +163,13 @@ gpt2_bpe_mini/checkpoints/
 
 ## Future Improvements
 
-- Add top-p (nucleus sampling)
-- Add weight initialization exactly like GPT-2
-- Add AdamW with learning-rate warmup
-- Add model quantization
-- Add dataset loader for custom text corpora
-- Add more notebooks (training visualization, tokenizer analysis)
+- Add AdamW with Learning-Rate Warmup + Cosine Decay
+- Add GPT-2 Style Weight Initialization
+- Add Rotary Positional Embeddings (RoPE)
+- Add Dataset Loader for Custom Text Corpora
+- Add Gradient Checkpointing
+- Add FP16 Mixed-Precision Training
+- Add Nucleus Sampling Refinements (top-p)
 
 
 ---
@@ -186,6 +187,7 @@ GitHub: https://github.com/mohdsaifcsu
 This project is for **academic and educational use** only.
 
 ---
+
 
 
 
