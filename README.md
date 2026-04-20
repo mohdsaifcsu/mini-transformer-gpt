@@ -177,7 +177,6 @@ gpt2_bpe_mini/checkpoints/
 ##  Author
 
 **Mohd Saif**  
-Master’s Student - Colorado State University  
 GitHub: https://github.com/mohdsaifcsu
 
 ---
